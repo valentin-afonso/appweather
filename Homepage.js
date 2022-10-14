@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, Button } from 'react-native';
 import Logo from './assets/logo.png';
+import { useQueryClient, useQuery } from '@tanstack/react-query';
 
 export default function Homescreen({ navigation }) {
     const [text, setText] = useState('');
 
-    // const queryClient = useQueryClient();
-    // const query = useQuery(['todos'], getTodos);
+    const queryClient = useQueryClient();
+    //const query = useQuery(['todos'], getTodos);
 
     return (
         <View style={styles.home}>
