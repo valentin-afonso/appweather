@@ -1,35 +1,42 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, ScrollView, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button } from 'react-native';
 import Logo from './assets/logo.png';
-import { useQueryClient, useQuery } from '@tanstack/react-query';
+import DatasList from './DatasList';
+
 
 export default function Homescreen({ navigation }) {
     const [text, setText] = useState('');
 
-    const queryClient = useQueryClient();
-    //const query = useQuery(['todos'], getTodos);
-
     return (
         <View style={styles.home}>
-            <Image
-                style={styles.logo}
-                source={Logo}
-            />
-            <Text>Entrez du text</Text>
-            <TextInput
-                style={styles.input}
-                onChangeText={setText}
-                value={text}
-                placeholder="useless placeholder"
-                keyboardType="all"
-            />
-            <Button
+            <View style={styles.homeHeader}>
+                <Image
+                    style={styles.logo}
+                    source={Logo}
+                />
+                <Text>Weather App</Text>
+            </View>
+            {/*
+                <Button
+                style={styles.buttonAbout}
                 title="Go to About page"
                 onPress={() => navigation.navigate('About')}
+                />
+            */}
+            <View style={styles.homeForm}>
+                <Text>Entrez une ville</Text>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setText}
+                    value={text}
+                    placeholder="Entrez une ville"
+                    keyboardType="all"
+                />
+            </View>
+            <DatasList
+                navigation={navigation}
             />
-            <ScrollView>
-            </ScrollView>
             <StatusBar style="auto" />
         </View>
     );
@@ -38,11 +45,29 @@ export default function Homescreen({ navigation }) {
 const styles = StyleSheet.create({
     home: {
         flex: 1,
-        alignItems: 'start',
-        justifyContent: 'start',
+    },
+    homeHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        padding: 10,
+        position: 'relative',
+    },
+    homeForm: {
+        width: '100%',
+        padding: 10,
+        backgroundColor: '#E3E3E3',
+    },
+    input: {
+        padding: 20,
+        fontSize: 16,
+        marginTop: 10,
+        backgroundColor: '#fff',
     },
     logo: {
         width: 50,
         height: 50,
-    }
+        marginRight: 10,
+    },
 });

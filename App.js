@@ -13,8 +13,6 @@ export default function App() {
         <MyStack></MyStack>
       </NavigationContainer>
     </QueryClientProvider>
-
-
   );
 }
 
