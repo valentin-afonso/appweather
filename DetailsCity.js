@@ -12,8 +12,8 @@ export default function DetailsCity({ route, navigation }) {
     return (
         <View style={styles.detailsCity}>
 
-            {isLoading && <Text value='chargement'>chargement des détails...</Text>}
-            {isError && <Text value='erreur'>erreur</Text>}
+            {isLoading && <Text value='chargement' style={styles.white}>chargement des détails...</Text>}
+            {isError && <Text value='erreur' style={styles.white}>erreur</Text>}
             {/*
             isSuccess &&
                 <View style={styles.containerDetails} >
@@ -48,5 +48,8 @@ const styles = StyleSheet.create({
     title: {
         fontWeight: 'bold',
         marginBottom: 5,
+    },
+    white: {
+        color: '#fff',
     }
 });

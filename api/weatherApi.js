@@ -10,8 +10,8 @@ export const getWeather = async (cityname) => {
     const weather = await response.json();
     return weather;
 }
-/*
-export const getDay = (dateParam) => {
+
+export const getDateDay = (dateParam) => {
     var dayNames = [
         "Lun",
         "Mar",
@@ -19,15 +19,15 @@ export const getDay = (dateParam) => {
         "Jeu",
         "Ven",
         "Sam",
-        "Dim"
+        "Dim",
     ];
     var date = new Date(dateParam);
-    var dd = date.getDate();
-    var dayname = dayNames[date.getDay() - 1];
-    var mm = monthNames[date.getMonth()];
-    var yyyy = date.getFullYear();
-    var fullDate = dayname + " " + dd + " " + mm + " " + yyyy;
-    day = "";
-    return day;
+    var dayname = dayNames[date.getDay()];
+    return dayname;
 }
-*/
+
+export const getDateHours = (dateParam) => {
+    var date = new Date(dateParam);
+    var hours = date.getHours();
+    return hours;
+}

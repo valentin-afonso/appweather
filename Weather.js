@@ -11,14 +11,14 @@ export default function Weather({ cityname, id, navigation }) {
 
     return (
         <View style={styles.weather}>
-            {isLoading && <Text value='chargement'>chargement de la météo...</Text>}
-            {isError && <Text value='erreur'>erreur</Text>}
+            {isLoading && <Text value='chargement' style={styles.white}>chargement de la météo...</Text>}
+            {isError && <Text value='erreur' style={styles.white}>erreur</Text>}
             {isSuccess &&
                 <View style={styles.containerInfoWeather}>
                     {typeof (weather.errors) !== "undefined" &&
 
                         <View style={styles.infoWeather}>
-                            <Text>Données indisponnible pour cette ville</Text>
+                            <Text style={styles.white}>Données indisponnible pour cette ville</Text>
                         </View>
                     }
                     {typeof (weather.errors) === "undefined" &&

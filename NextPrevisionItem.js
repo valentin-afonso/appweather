@@ -1,17 +1,17 @@
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import * as api from './api/weatherApi';
 
 export default function NextPrevisionItem({ weather, navigation }) {
 
     return (
-        <View style={styles.prevision}>
-            <Text
-                style={styles.white}
-                onPress={() => {
-                    navigation.navigate('DetailsHours', {
-                        hourly: weather['hourly'],
-                    });
-                }}
-            > {weather.date}</Text>
+        <TouchableOpacity
+            style={styles.prevision}
+            onPress={() => {
+                navigation.navigate('DetailsHours', {
+                    hourly: weather['hourly'],
+                });
+            }}>
+            <Text style={styles.white}>{api.getDateDay(weather.date)}</Text>
             <View style={styles.previsionCondition}>
                 <Image
                     style={styles.icon}
@@ -22,7 +22,7 @@ export default function NextPrevisionItem({ weather, navigation }) {
                 <Text style={styles.white}> {weather.condition}</Text>
             </View>
             <Text style={styles.white}> Max {weather['temperature'].max}{weather['temperature'].unit} </Text>
-        </View>
+        </TouchableOpacity>
 
     );
 }

@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import * as api from './api/weatherApi';
 
 export default function DetailsHours({ route }) {
 
@@ -12,7 +13,7 @@ export default function DetailsHours({ route }) {
                         <View
                             key={id}
                             style={styles.prevision}>
-                            <Text style={styles.white}>{item.datetime}</Text>
+                            <Text style={styles.white}>0{api.getDateHours(item.datetime)}:00</Text>
                             <View style={styles.previsionCondition}>
                                 <Image
                                     style={styles.icon}
