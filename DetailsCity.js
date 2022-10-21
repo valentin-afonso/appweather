@@ -14,7 +14,8 @@ export default function DetailsCity({ route, navigation }) {
 
             {isLoading && <Text value='chargement'>chargement des détails...</Text>}
             {isError && <Text value='erreur'>erreur</Text>}
-            {isSuccess &&
+            {/*
+            isSuccess &&
                 <View style={styles.containerDetails} >
                     <Text style={styles.title}>Détails de la ville : </Text>
                     <Text>{city.nom} / {city.code}</Text>
@@ -23,10 +24,11 @@ export default function DetailsCity({ route, navigation }) {
                     <Text>Population : {city.population} habitants</Text>
                 </View>
 
-            }
+    */}
             <Weather
                 cityname={cityname}
-                id={id} />
+                id={id}
+                navigation={navigation} />
             <Button title="Go back" onPress={() => navigation.goBack()} />
         </View>
     );
@@ -38,10 +40,8 @@ const styles = StyleSheet.create({
         color: 'black',
         alignItems: 'center',
         justifyContent: 'start',
-        backgroundColor: '#E3E3E3',
     },
     containerDetails: {
-        backgroundColor: '#fff',
         padding: 10,
         width: '100%',
     },

@@ -15,7 +15,7 @@ export default function Homescreen({ navigation }) {
                     style={styles.logo}
                     source={Logo}
                 />
-                <Text>Weather App</Text>
+                <Text style={styles.white}>Weather App</Text>
             </View>
             {/*
                 <Button
@@ -25,7 +25,7 @@ export default function Homescreen({ navigation }) {
                 />
             */}
             <View style={styles.homeForm}>
-                <Text>Entrez une ville</Text>
+                <Text style={styles.white}>Entrez une ville</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={setText}
@@ -45,6 +45,7 @@ export default function Homescreen({ navigation }) {
 const styles = StyleSheet.create({
     home: {
         flex: 1,
+        backgroundColor: '#17202A',
     },
     homeHeader: {
         flexDirection: 'row',
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     homeForm: {
         width: '100%',
         padding: 10,
-        backgroundColor: '#E3E3E3',
+        backgroundColor: '#283747',
     },
     input: {
         padding: 20,
@@ -70,4 +71,7 @@ const styles = StyleSheet.create({
         height: 50,
         marginRight: 10,
     },
+    white: {
+        color: '#fff',
+    }
 });

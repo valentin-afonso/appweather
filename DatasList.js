@@ -42,7 +42,7 @@ export default function DatasList({ setCityId, navigation }) {
 const styles = StyleSheet.create({
     list: {
         alignItems: 'center',
-        backgroundColor: "#fff",
+        backgroundColor: '#17202A',
         width: '100%',
     },
     scrollview: {
@@ -51,11 +51,13 @@ const styles = StyleSheet.create({
     listTitle: {
         textAlign: 'center',
         margin: 10,
+        color: "#fff",
     },
     city: {
         padding: 20,
         margin: 2,
-        backgroundColor: "#E3E3E3",
+        backgroundColor: '#283747',
+        color: '#fff',
         border: "10px solid black",
     }
 });
