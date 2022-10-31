@@ -10,10 +10,50 @@ const Stack = createNativeStackNavigator();
 export default function MyStack() {
     return (
         <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={Homescreen} />
-            <Stack.Screen name="About" component={Aboutscreen} />
-            <Stack.Screen name="Details" component={DetailsCity} />
-            <Stack.Screen name="DetailsHours" component={DetailsHours} />
+            <Stack.Screen
+                name="Home"
+                component={Homescreen}
+                options={{
+                    title: 'Weather App',
+                    headerStyle: {
+                        backgroundColor: '#17202A',
+                    },
+                    headerTintColor: '#fff',
+                }}
+            />
+            <Stack.Screen
+                name="About"
+                component={Aboutscreen}
+                options={{
+                    title: 'About',
+                    headerStyle: {
+                        backgroundColor: '#17202A',
+                    },
+                    headerTintColor: '#fff',
+                }}
+            />
+            <Stack.Screen
+                name="Details"
+                component={DetailsCity}
+                options={{
+                    title: 'Details',
+                    headerStyle: {
+                        backgroundColor: '#17202A',
+                    },
+                    headerTintColor: '#fff',
+                }}
+            />
+            <Stack.Screen
+                name="DetailsHours"
+                component={DetailsHours}
+                options={{
+                    title: 'Details',
+                    headerStyle: {
+                        backgroundColor: '#17202A',
+                    },
+                    headerTintColor: '#fff',
+                }}
+            />
         </Stack.Navigator>
     );
 }

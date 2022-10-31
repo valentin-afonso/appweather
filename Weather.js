@@ -7,21 +7,22 @@ import NextPrevisionList from './NextPrevisionList';
 export default function Weather({ cityname, id, navigation }) {
 
 
-    const { data: weather, isLoading, isSuccess, isError, status } = useQuery(['weather', id], () => api.getWeather(cityname));
+    const { data: weather, isLoading, isSuccess, isError, error } = useQuery(['weather', id], () => api.getWeather(cityname), {
+        useErrorBoundary: (error) => error.response?.status >= 500,
+    });
+    if (isError) {
+        return (
+            <Text value='erreur' style={styles.white}>Données indisponnible pour cette ville</Text>
+        )
+    }
+    if (isSuccess) {
+        return (
+            <View style={styles.weather}>
+                {isLoading && <Text value='chargement' style={styles.white}>chargement de la météo...</Text>}
+                {isError && <Text value='erreur' style={styles.white}>Données indisponnible pour cette ville</Text>}
 
-    return (
-        <View style={styles.weather}>
-            {isLoading && <Text value='chargement' style={styles.white}>chargement de la météo...</Text>}
-            {isError && <Text value='erreur' style={styles.white}>erreur</Text>}
-            {isSuccess &&
-                <View style={styles.containerInfoWeather}>
-                    {typeof (weather.errors) !== "undefined" &&
-
-                        <View style={styles.infoWeather}>
-                            <Text style={styles.white}>Données indisponnible pour cette ville</Text>
-                        </View>
-                    }
-                    {typeof (weather.errors) === "undefined" &&
+                {isSuccess &&
+                    <View style={styles.containerInfoWeather}>
                         <View style={styles.infoWeather}>
                             <View style={styles.containerCurrentWeather}>
                                 <View style={styles.currentWeatherTop}>
@@ -53,10 +54,6 @@ export default function Weather({ cityname, id, navigation }) {
                                         <Text style={styles.infoValue}>XX %</Text>
                                         <Text style={styles.white}>UV</Text>
                                     </View>
-
-
-
-
                                 </View>
                             </View>
                             <NextPrevisionList
@@ -64,12 +61,13 @@ export default function Weather({ cityname, id, navigation }) {
                                 navigation={navigation}
                             />
                         </View>
-                    }
-                </View>
+                    </View>
 
-            }
-        </View>
-    );
+                }
+            </View>
+        );
+    }
+
 }
 
 const styles = StyleSheet.create({

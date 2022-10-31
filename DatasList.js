@@ -8,9 +8,9 @@ export default function DatasList({ setCityId, navigation }) {
 
     return (
         <View style={styles.list}>
-            <Text style={styles.listTitle}>List datas</Text>
-            {isLoading && <Text value='chargement'>chargement des villes ...</Text>}
-            {isError && <Text value='erreur'>erreur</Text>}
+            <Text style={styles.listTitle}>Trouvez une ville</Text>
+            {isLoading && <Text value='chargement' style={styles.white}>chargement des villes ...</Text>}
+            {isError && <Text value='erreur' style={styles.white}>erreur</Text>}
             {isSuccess &&
                 <ScrollView style={styles.scrollview}>
                     {
@@ -43,21 +43,30 @@ const styles = StyleSheet.create({
     list: {
         alignItems: 'center',
         backgroundColor: '#17202A',
-        width: '100%',
+        width: '95%',
+        marginTop: 20,
     },
     scrollview: {
         width: '100%',
+        borderRadius: 20,
     },
     listTitle: {
-        textAlign: 'center',
+        textAlign: 'start',
         margin: 10,
         color: "#fff",
+        width: '100%',
+        fontSize: 30,
+        paddingLeft: 10,
     },
     city: {
         padding: 20,
-        margin: 2,
         backgroundColor: '#283747',
         color: '#fff',
-        border: "10px solid black",
+        borderBottomWidth: 6,
+        borderColor: '#fff',
+        marginBottom: 1,
+    },
+    white: {
+        color: '#fff',
     }
 });

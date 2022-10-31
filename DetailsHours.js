@@ -13,7 +13,13 @@ export default function DetailsHours({ route }) {
                         <View
                             key={id}
                             style={styles.prevision}>
-                            <Text style={styles.white}>0{api.getDateHours(item.datetime)}:00</Text>
+
+                            {api.getDateHours(item.datetime) < 10 &&
+                                <Text style={styles.white}>0{api.getDateHours(item.datetime)}:00</Text>
+                            }
+                            {api.getDateHours(item.datetime) >= 10 &&
+                                <Text style={styles.white}>{api.getDateHours(item.datetime)}:00</Text>
+                            }
                             <View style={styles.previsionCondition}>
                                 <Image
                                     style={styles.icon}
