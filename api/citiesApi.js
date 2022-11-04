@@ -5,6 +5,10 @@ export const getCities = async () => {
     const cities = await response.json();
     // Fichier json trop long ...
     cities.length = 100;
+
+    if (!response.ok) {
+        throw new Error("error");
+    }
     return cities;
 }
 

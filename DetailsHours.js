@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import theme from './styles/theme.style';
 import { StyleSheet, Text, View, ScrollView, Image, RefreshControl } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
 import * as api from './api/weatherApi';
@@ -22,8 +23,16 @@ export default function DetailsHours({ route }) {
 
     return (
         <View style={styles.detailsHours}>
-            {isLoading && <Text value='chargement' style={styles.white}>chargement des villes ...</Text>}
-            {isError && <Text value='erreur' style={styles.white}>erreur</Text>}
+            {isLoading &&
+                <View style={styles.containerLoading}>
+                    <Text value='chargement' style={styles.white}>chargement des villes ...</Text>
+                </View>
+            }
+            {isError &&
+                <View style={styles.containerError}>
+                    <Text value='erreur' style={styles.white}>erreur</Text>
+                </View>
+            }
             {isSuccess &&
                 <ScrollView
                     style={styles.scrollview}
@@ -64,44 +73,13 @@ export default function DetailsHours({ route }) {
             }
 
         </View>
-        /*
-        <View style={styles.detailsHours}>
-            <ScrollView style={styles.scrollview}>
-                {
-                    hourly.map((item, id) => (
-                        <View
-                            key={id}
-                            style={styles.prevision}>
-
-                            {api.getDateHours(item.datetime) < 10 &&
-                                <Text style={styles.white}>0{api.getDateHours(item.datetime)}:00</Text>
-                            }
-                            {api.getDateHours(item.datetime) >= 10 &&
-                                <Text style={styles.white}>{api.getDateHours(item.datetime)}:00</Text>
-                            }
-                            <View style={styles.previsionCondition}>
-                                <Image
-                                    style={styles.icon}
-                                    source={{
-                                        uri: item.icon
-                                    }}
-                                />
-                                <Text style={styles.white}> {item.condition}</Text>
-                            </View>
-                            <Text style={styles.white}> {item['temperature'].value} {item['temperature'].unit}</Text>
-                        </View>
-                    ))
-                }
-            </ScrollView>
-        </View>
-        */
     );
 
 }
 
 const styles = StyleSheet.create({
     detailsHours: {
-        backgroundColor: '#17202A',
+        backgroundColor: theme.PRIMARY_COLOR,
     },
     prevision: {
         flexDirection: 'row',
@@ -119,5 +97,19 @@ const styles = StyleSheet.create({
     },
     white: {
         color: '#fff',
+    },
+    containerLoading: {
+        backgroundColor: theme.PRIMARY_COLOR,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    containerError: {
+        backgroundColor: theme.PRIMARY_COLOR,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });

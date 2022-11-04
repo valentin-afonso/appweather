@@ -1,5 +1,6 @@
 
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import theme from './styles/theme.style';
 import * as api from './api/weatherApi';
 import { useQuery } from '@tanstack/react-query';
 import NextPrevisionList from './NextPrevisionList';
@@ -7,22 +8,28 @@ import NextPrevisionList from './NextPrevisionList';
 export default function Weather({ cityname, id, navigation }) {
 
 
-    const { data: weather, isLoading, isSuccess, isError, error } = useQuery(['weather', id], () => api.getWeather(cityname), {
+    const { data: weather, isLoading, isSuccess, isError, refetch, error } = useQuery(['weather', id], () => api.getWeather(cityname), {
         useErrorBoundary: (error) => error.response?.status >= 500,
     });
 
-    if (isLoading) {
-        return (<View><Text value='chargement' style={styles.white}>chargement de la météo...</Text></View>);
-    }
-
-    if (isError) {
-        return (<View><Text value='erreur' style={styles.white}>Données indisponnible pour cette ville</Text></View>);
-    }
-
     return (
         <View style={styles.weather}>
-            {isLoading && <Text value='chargement' style={styles.white}>chargement de la météo...</Text>}
-            {isError && <Text value='erreur' style={styles.white}>Données indisponnible pour cette ville</Text>}
+            {isLoading &&
+                <View style={styles.containerLoading}>
+                    <Text value='chargement' style={styles.white}>chargement de la météo...</Text>
+                </View>
+            }
+            {isError &&
+                <View style={styles.containerError}>
+                    <Text value='erreur' style={styles.white}>Données indisponnible pour cette ville</Text>
+                    <Button
+                        style={styles.buttonRefresh}
+                        title="Try again"
+                        color="#fff"
+                        onPress={() => refetch()}
+                    />
+                </View>
+            }
             {isSuccess &&
                 <View style={styles.containerInfoWeather}>
                     <View style={styles.infoWeather}>
@@ -90,7 +97,7 @@ const styles = StyleSheet.create({
         paddingBottom: 30,
         paddingRight: 10,
         paddingLeft: 10,
-        backgroundColor: '#283747',
+        backgroundColor: theme.SECONDARY_COLOR,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
     },
@@ -111,7 +118,7 @@ const styles = StyleSheet.create({
     infoWeather: {
         display: 'flex',
         height: '100%',
-        backgroundColor: '#17202A',
+        backgroundColor: theme.PRIMARY_COLOR,
         alignItems: 'start',
         justifyContent: 'start',
     },
@@ -136,5 +143,19 @@ const styles = StyleSheet.create({
     },
     white: {
         color: '#fff',
+    },
+    containerLoading: {
+        backgroundColor: theme.PRIMARY_COLOR,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    containerError: {
+        backgroundColor: theme.PRIMARY_COLOR,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });

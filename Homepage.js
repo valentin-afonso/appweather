@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import theme from './styles/theme.style';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Button } from 'react-native';
 import Logo from './assets/logo.png';
@@ -58,7 +59,7 @@ export default function Homescreen({ navigation }) {
 const styles = StyleSheet.create({
     home: {
         flex: 1,
-        backgroundColor: '#17202A',
+        backgroundColor: theme.PRIMARY_COLOR,
         alignItems: 'center',
     },
     homeHeader: {
@@ -74,7 +75,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        backgroundColor: '#283747',
         borderRadius: 50,
         height: 60,
         width: '80%',
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         width: '80%',
         color: '#fff',
-        backgroundColor: '#283747',
+        backgroundColor: theme.SECONDARY_COLOR,
     },
     logo: {
         width: 50,

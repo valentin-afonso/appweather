@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import theme from './styles/theme.style';
 import { useQuery } from '@tanstack/react-query';
 import { StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native';
 import * as api from './api/citiesApi';
@@ -21,8 +22,16 @@ export default function DatasList({ setCityId, navigation }) {
     return (
         <View style={styles.list}>
             <Text style={styles.listTitle}>Trouvez une ville</Text>
-            {isLoading && <Text value='chargement' style={styles.white}>chargement des villes ...</Text>}
-            {isError && <Text value='erreur' style={styles.white}>erreur</Text>}
+            {isLoading &&
+                <View style={styles.containerLoading}>
+                    <Text value='chargement' style={styles.white}>chargement des villes ...</Text>
+                </View>
+            }
+            {isError &&
+                <View style={styles.containerError}>
+                    <Text value='erreur' style={styles.white}>erreur</Text>
+                </View>
+            }
             {isSuccess &&
                 <ScrollView
                     style={styles.scrollview}
@@ -63,7 +72,6 @@ export default function DatasList({ setCityId, navigation }) {
 const styles = StyleSheet.create({
     list: {
         alignItems: 'center',
-        backgroundColor: '#17202A',
         width: '95%',
         marginTop: 20,
     },
@@ -81,7 +89,7 @@ const styles = StyleSheet.create({
     },
     city: {
         padding: 20,
-        backgroundColor: '#283747',
+        backgroundColor: theme.SECONDARY_COLOR,
         color: '#fff',
         borderBottomWidth: 6,
         borderColor: '#fff',
@@ -89,5 +97,19 @@ const styles = StyleSheet.create({
     },
     white: {
         color: '#fff',
+    },
+    containerLoading: {
+        backgroundColor: theme.PRIMARY_COLOR,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    containerError: {
+        backgroundColor: theme.PRIMARY_COLOR,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });
