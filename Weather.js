@@ -10,63 +10,66 @@ export default function Weather({ cityname, id, navigation }) {
     const { data: weather, isLoading, isSuccess, isError, error } = useQuery(['weather', id], () => api.getWeather(cityname), {
         useErrorBoundary: (error) => error.response?.status >= 500,
     });
-    if (isError) {
-        return (
-            <Text value='erreur' style={styles.white}>Données indisponnible pour cette ville</Text>
-        )
-    }
-    if (isSuccess) {
-        return (
-            <View style={styles.weather}>
-                {isLoading && <Text value='chargement' style={styles.white}>chargement de la météo...</Text>}
-                {isError && <Text value='erreur' style={styles.white}>Données indisponnible pour cette ville</Text>}
 
-                {isSuccess &&
-                    <View style={styles.containerInfoWeather}>
-                        <View style={styles.infoWeather}>
-                            <View style={styles.containerCurrentWeather}>
-                                <View style={styles.currentWeatherTop}>
-                                    <View>
-                                        <Text style={styles.currentWeatherTopText}>Actuellement</Text>
-                                        <Text style={styles.currentWeatherTopTextTmp}>{weather["currentConditions"]['temperature'].value} {weather["currentConditions"]['temperature'].unit}</Text>
-                                    </View>
-                                    <Image
-                                        style={styles.icon}
-                                        source={{
-                                            uri: weather['currentConditions'].icon
-                                        }}
-                                    />
+    if (isLoading) {
+        return (<View><Text value='chargement' style={styles.white}>chargement de la météo...</Text></View>);
+    }
+
+    if (isError) {
+        return (<View><Text value='erreur' style={styles.white}>Données indisponnible pour cette ville</Text></View>);
+    }
+
+    return (
+        <View style={styles.weather}>
+            {isLoading && <Text value='chargement' style={styles.white}>chargement de la météo...</Text>}
+            {isError && <Text value='erreur' style={styles.white}>Données indisponnible pour cette ville</Text>}
+            {isSuccess &&
+                <View style={styles.containerInfoWeather}>
+                    <View style={styles.infoWeather}>
+                        <View style={styles.containerCurrentWeather}>
+                            <View style={styles.currentWeatherTop}>
+                                <View>
+                                    <Text style={styles.currentWeatherTopText}>Actuellement</Text>
+                                    <Text style={styles.currentWeatherTopTextTmp}>{weather["currentConditions"]['temperature'].value} {weather["currentConditions"]['temperature'].unit}</Text>
                                 </View>
-                                <View style={styles.containerInfo}>
-                                    <View style={styles.info}>
-                                        <Text style={styles.infoValue}>{weather["currentConditions"]['windSpeed'].value} km/h</Text>
-                                        <Text style={styles.white}>Vent</Text>
-                                    </View>
-                                    <View style={styles.info}>
-                                        <Text style={styles.infoValue}>{weather["currentConditions"]['humidity'].value} %</Text>
-                                        <Text style={styles.white}>Humidité</Text>
-                                    </View>
-                                    <View style={styles.info}>
-                                        <Text style={styles.infoValue}>XX %</Text>
-                                        <Text style={styles.white}>Pluie</Text>
-                                    </View>
-                                    <View style={styles.info}>
-                                        <Text style={styles.infoValue}>XX %</Text>
-                                        <Text style={styles.white}>UV</Text>
-                                    </View>
+                                <Image
+                                    style={styles.icon}
+                                    source={{
+                                        uri: weather['currentConditions'].icon
+                                    }}
+                                />
+                            </View>
+                            <View style={styles.containerInfo}>
+                                <View style={styles.info}>
+                                    <Text style={styles.infoValue}>{weather["currentConditions"]['windSpeed'].value} km/h</Text>
+                                    <Text style={styles.white}>Vent</Text>
+                                </View>
+                                <View style={styles.info}>
+                                    <Text style={styles.infoValue}>{weather["currentConditions"]['humidity'].value} %</Text>
+                                    <Text style={styles.white}>Humidité</Text>
+                                </View>
+                                <View style={styles.info}>
+                                    <Text style={styles.infoValue}>XX %</Text>
+                                    <Text style={styles.white}>Pluie</Text>
+                                </View>
+                                <View style={styles.info}>
+                                    <Text style={styles.infoValue}>XX %</Text>
+                                    <Text style={styles.white}>UV</Text>
                                 </View>
                             </View>
-                            <NextPrevisionList
-                                previsions={weather["next5DaysConditions"]}
-                                navigation={navigation}
-                            />
                         </View>
+                        <NextPrevisionList
+                            previsions={weather["next5DaysConditions"]}
+                            cityname={cityname}
+                            navigation={navigation}
+                        />
                     </View>
+                </View>
 
-                }
-            </View>
-        );
-    }
+            }
+        </View>
+    );
+
 
 }
 

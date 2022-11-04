@@ -1,10 +1,22 @@
+import React, { useState, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native';
 import * as api from './api/citiesApi';
 
 export default function DatasList({ setCityId, navigation }) {
 
-    const { data, isLoading, isSuccess, isError } = useQuery(['cities'], api.getCities);
+    const { data, isLoading, isSuccess, isError } = useQuery(['weather'], api.getCities);
+
+    const [refreshing, setRefreshing] = useState(false);
+
+    const wait = (timeout) => {
+        return new Promise(resolve => setTimeout(resolve, timeout));
+    }
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+    }, []);
 
     return (
         <View style={styles.list}>
@@ -12,7 +24,16 @@ export default function DatasList({ setCityId, navigation }) {
             {isLoading && <Text value='chargement' style={styles.white}>chargement des villes ...</Text>}
             {isError && <Text value='erreur' style={styles.white}>erreur</Text>}
             {isSuccess &&
-                <ScrollView style={styles.scrollview}>
+                <ScrollView
+                    style={styles.scrollview}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                            tintColor="#fff"
+                        />
+                    }
+                >
                     {
 
                         data.map((city, id) => (

@@ -50,7 +50,7 @@ export default function Homescreen({ navigation }) {
             <DatasList
                 navigation={navigation}
             />
-            <StatusBar style="auto" />
+            <StatusBar style="light" />
         </View>
     );
 }

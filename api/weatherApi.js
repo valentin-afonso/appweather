@@ -4,6 +4,12 @@ export const getWeather = async (cityname) => {
     return weather;
 }
 
+export const getWeatherDetails = async (cityname, date) => {
+    const response = await fetch(`https://weather-api.mathisbarre.com/${cityname}/${date}`);
+    const weatherDetails = await response.json();
+    return weatherDetails;
+}
+
 export const getDateDay = (dateParam) => {
     var dayNames = [
         "Lun",
