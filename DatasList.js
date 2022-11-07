@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native';
 import * as api from './api/citiesApi';
 
-export default function DatasList({ setCityId, navigation }) {
+export default function DatasList({ navigation, valueInput }) {
 
     const { data, isLoading, isSuccess, isError } = useQuery(['weather'], api.getCities);
 
@@ -43,8 +43,25 @@ export default function DatasList({ setCityId, navigation }) {
                         />
                     }
                 >
-                    {
-
+                    {valueInput !== '' &&
+                        data.map((city, id) => (
+                            city.nom.indexOf(valueInput) !== -1 &&
+                            <Text
+                                style={styles.city}
+                                key={id}
+                                onPress={() => {
+                                    navigation.navigate('Details', {
+                                        cityname: city.nom,
+                                        code: city.code,
+                                        id: id,
+                                    });
+                                }}
+                            >
+                                {city.nom}
+                            </Text>
+                        ))
+                    }
+                    {valueInput === '' &&
                         data.map((city, id) => (
                             <Text
                                 style={styles.city}
@@ -55,13 +72,15 @@ export default function DatasList({ setCityId, navigation }) {
                                         code: city.code,
                                         id: id,
                                     });
-                                    // setCityId(id);
                                 }}
                             >
                                 {city.nom}
                             </Text>
                         ))
                     }
+
+
+
                 </ScrollView>
             }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import theme from './styles/theme.style';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import Logo from './assets/logo.png';
 import Search from './assets/icon-search.png';
 import DatasList from './DatasList';
@@ -19,13 +19,6 @@ export default function Homescreen({ navigation }) {
                 />
                 <Text style={styles.white}>Weather App</Text>
             </View>
-            {/*
-                <Button
-                style={styles.buttonAbout}
-                title="Go to About page"
-                onPress={() => navigation.navigate('About')}
-                />
-            */}
             <View style={styles.homeForm}>
                 <TextInput
                     style={styles.input}
@@ -39,6 +32,7 @@ export default function Homescreen({ navigation }) {
                     onPress={() => {
                         navigation.navigate('Details', {
                             cityname: { text },
+                            id: Math.floor(Math.random()),
                         });
                     }}
                 >
@@ -50,6 +44,7 @@ export default function Homescreen({ navigation }) {
             </View>
             <DatasList
                 navigation={navigation}
+                valueInput={text}
             />
             <StatusBar style="light" />
         </View>

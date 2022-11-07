@@ -8,9 +8,7 @@ import NextPrevisionList from './NextPrevisionList';
 export default function Weather({ cityname, id, navigation }) {
 
 
-    const { data: weather, isLoading, isSuccess, isError, refetch, error } = useQuery(['weather', id], () => api.getWeather(cityname), {
-        useErrorBoundary: (error) => error.response?.status >= 500,
-    });
+    const { data: weather, isLoading, isSuccess, isError, refetch, error } = useQuery(['weather', id], () => api.getWeather(cityname));
 
     return (
         <View style={styles.weather}>
