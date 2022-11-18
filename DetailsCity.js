@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import * as api from './api/citiesApi';
 import { useQuery } from '@tanstack/react-query';
 import Weather from './Weather';
+import theme from './styles/theme.style';
 
 export default function DetailsCity({ route, navigation }) {
 
@@ -12,8 +13,16 @@ export default function DetailsCity({ route, navigation }) {
     return (
         <View style={styles.detailsCity}>
 
-            {isLoading && <Text value='chargement' style={styles.white}>chargement des détails...</Text>}
-            {isError && <Text value='erreur' style={styles.white}>erreur</Text>}
+            {isLoading &&
+                <View style={styles.containerLoading}>
+                    <Text value='chargement' style={styles.white}>chargement des détails...</Text>
+                </View>
+            }
+            {isError &&
+                <View style={styles.containerError}>
+                    <Text value='erreur' style={styles.white}>erreur</Text>
+                </View>
+            }
             {/*
             isSuccess &&
                 <View style={styles.containerDetails} >
@@ -51,5 +60,19 @@ const styles = StyleSheet.create({
     },
     white: {
         color: '#fff',
+    },
+    containerLoading: {
+        backgroundColor: theme.PRIMARY_COLOR,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    containerError: {
+        backgroundColor: theme.PRIMARY_COLOR,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });

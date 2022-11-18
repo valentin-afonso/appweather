@@ -1,15 +1,11 @@
-/*
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Homescreen from './Homepage';
-import Aboutscreen from './Aboutscreen';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Homescreen from "./Homepage";
 import DetailsCity from './DetailsCity';
 import DetailsHours from './DetailsHours';
-import { BottomTabBar } from '@react-navigation/bottom-tabs';
 
 const Stack = createNativeStackNavigator();
 
-
-export default function MyStack() {
+function HomeStack() {
     return (
         <Stack.Navigator initialRouteName="Home">
             <Stack.Screen
@@ -17,17 +13,7 @@ export default function MyStack() {
                 component={Homescreen}
                 options={{
                     title: 'Weather App',
-                    headerStyle: {
-                        backgroundColor: '#17202A',
-                    },
-                    headerTintColor: '#fff',
-                }}
-            />
-            <Stack.Screen
-                name="About"
-                component={Aboutscreen}
-                options={{
-                    title: 'About',
+                    headerShown: true,
                     headerStyle: {
                         backgroundColor: '#17202A',
                     },
@@ -39,6 +25,7 @@ export default function MyStack() {
                 component={DetailsCity}
                 options={{
                     title: 'Details',
+                    headerShown: true,
                     headerStyle: {
                         backgroundColor: '#17202A',
                     },
@@ -49,7 +36,8 @@ export default function MyStack() {
                 name="DetailsHours"
                 component={DetailsHours}
                 options={{
-                    title: 'Details',
+                    title: 'Détails',
+                    headerShown: true,
                     headerStyle: {
                         backgroundColor: '#17202A',
                     },
@@ -57,8 +45,7 @@ export default function MyStack() {
                 }}
             />
         </Stack.Navigator>
-
     );
 }
 
-*/
+export default HomeStack;

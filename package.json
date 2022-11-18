@@ -9,10 +9,12 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.4.0",
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.1",
     "@tanstack/react-query": "^4.12.0",
     "axios": "^1.1.2",
+    "eas": "^0.1.0",
     "eas-cli": "^2.6.0",
     "expo": "~46.0.16",
     "expo-status-bar": "~1.4.0",
