@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import * as api from './api/weatherApi';
+import * as api from '../api/weatherApi';
 
 export default function NextPrevisionItem({ weather, id, cityname, navigation }) {
 

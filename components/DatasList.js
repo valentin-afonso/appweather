@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import theme from './styles/theme.style';
+import theme from '../styles/theme.style';
 import { useQuery } from '@tanstack/react-query';
 import { StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native';
-import * as api from './api/citiesApi';
+import * as api from '../api/citiesApi';
 
 export default function DatasList({ navigation, valueInput }) {
 

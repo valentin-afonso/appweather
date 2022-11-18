@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Button, ScrollView, TextInput } from 'react-native';
-import theme from './styles/theme.style';
+import theme from '../styles/theme.style';
 
 export default function Aboutscreen({ navigation }) {
 

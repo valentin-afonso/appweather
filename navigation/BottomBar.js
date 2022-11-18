@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import theme from './styles/theme.style';
+import theme from '../styles/theme.style';
 import HomeStack from "./HomeStack";
 import AboutStack from "./AboutStack";
 
@@ -12,9 +12,9 @@ export default function BottomBar() {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
-                tabBarActiveTintColor: '#efb810',
-                tabBarInactiveTintColor: '#fff',
-                tabBarStyle: { backgroundColor: 'black', borderTopColor: theme.PRIMARY_COLOR },
+                tabBarActiveTintColor: theme.ICON_COLOR_ACTIVE,
+                tabBarInactiveTintColor: theme.ICON_COLOR_DEFAULT,
+                tabBarStyle: { backgroundColor: theme.BG_BOTTOM_BAR, borderTopColor: theme.PRIMARY_COLOR },
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
 

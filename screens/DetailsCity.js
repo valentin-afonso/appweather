@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
-import * as api from './api/citiesApi';
+import * as api from '../api/citiesApi';
 import { useQuery } from '@tanstack/react-query';
-import Weather from './Weather';
-import theme from './styles/theme.style';
+import Weather from '../components/Weather';
+import theme from '../styles/theme.style';
 
 export default function DetailsCity({ route, navigation }) {
 
@@ -23,17 +23,6 @@ export default function DetailsCity({ route, navigation }) {
                     <Text value='erreur' style={styles.white}>erreur</Text>
                 </View>
             }
-            {/*
-            isSuccess &&
-                <View style={styles.containerDetails} >
-                    <Text style={styles.title}>Détails de la ville : </Text>
-                    <Text>{city.nom} / {city.code}</Text>
-                    <Text>N° département {city.codeDepartement}</Text>
-                    <Text>Code Postale : {city.codesPostaux[0]}</Text>
-                    <Text>Population : {city.population} habitants</Text>
-                </View>
-
-    */}
             <Weather
                 cityname={cityname}
                 id={id}

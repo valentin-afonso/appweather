@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import theme from './styles/theme.style';
+import theme from '../styles/theme.style';
 import { StyleSheet, Text, View, ScrollView, Image, RefreshControl } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
-import * as api from './api/weatherApi';
+import * as api from '../api/weatherApi';
 
 export default function DetailsHours({ route }) {
 

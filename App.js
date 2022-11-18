@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import BottomBar from './BottomBar';
+import BottomBar from './navigation/BottomBar';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 

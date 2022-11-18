@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import theme from './styles/theme.style';
+import theme from '../styles/theme.style';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
-import Logo from './assets/logo.png';
-import Search from './assets/icon-search.png';
-import DatasList from './DatasList';
+import Logo from '../assets/logo.png';
+import Search from '../assets/icon-search.png';
+import DatasList from '../components/DatasList';
 
 
 export default function Homescreen({ navigation }) {

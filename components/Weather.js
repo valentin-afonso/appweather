@@ -1,7 +1,7 @@
 
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
-import theme from './styles/theme.style';
-import * as api from './api/weatherApi';
+import theme from '../styles/theme.style';
+import * as api from '../api/weatherApi';
 import { useQuery } from '@tanstack/react-query';
 import NextPrevisionList from './NextPrevisionList';
 
