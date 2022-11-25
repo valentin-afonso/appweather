@@ -11,7 +11,7 @@ export const getCities = async () => {
   return cities
 }
 
-export const getCity = async (code) => {
+export const getCity = async (code: any) => {
   const response = await fetch(`https://geo.api.gouv.fr/communes/${code}`)
   const city = await response.json()
   return city

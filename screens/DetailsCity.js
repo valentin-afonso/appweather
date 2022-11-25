@@ -7,7 +7,7 @@ import theme from '../styles/theme.style'
 export default function DetailsCity ({ route, navigation }) {
   const { cityname, code, id } = route.params
 
-  const { data: city, isLoading, isSuccess, isError } = useQuery(['cities', id], () => api.getCity(code))
+  const { data: city, isLoading, isError } = useQuery(['cities', id], () => api.getCity(code))
 
   return (
         <View style={styles.detailsCity}>
