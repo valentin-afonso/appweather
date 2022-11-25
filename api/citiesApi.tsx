@@ -1,3 +1,4 @@
+import { City } from "../promiseInterface/cityType"
 
 export const getCities = async () => {
   const response = await fetch('https://geo.api.gouv.fr/communes')
@@ -11,7 +12,7 @@ export const getCities = async () => {
   return cities
 }
 
-export const getCity = async (code: any) => {
+export const getCity = async (code: number): Promise<City> => {
   const response = await fetch(`https://geo.api.gouv.fr/communes/${code}`)
   const city = await response.json()
   return city

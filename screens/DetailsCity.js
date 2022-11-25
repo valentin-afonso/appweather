@@ -1,17 +1,18 @@
-import { StyleSheet, Text, View, Button } from 'react-native'
-import * as api from '../api/citiesApi'
-import { useQuery } from '@tanstack/react-query'
+
+import { StyleSheet, View, Button } from 'react-native'
+// import * as api from '../api/citiesApi'
+// import { useQuery } from '@tanstack/react-query'
 import Weather from '../components/Weather'
 import theme from '../styles/theme.style'
 
 export default function DetailsCity ({ route, navigation }) {
-  const { cityname, code, id } = route.params
-
-  const { data: city, isLoading, isError } = useQuery(['cities', id], () => api.getCity(code))
+  const { cityname, id } = route.params
+  // const { cityname, code, id } = route.params
+  // const { data: city, isLoading, isError } = useQuery(['cities', id], () => api.getCity(code))
 
   return (
         <View style={styles.detailsCity}>
-
+          {/*
             {isLoading &&
                 <View style={styles.containerLoading}>
                     <Text value='chargement' style={styles.white}>chargement des détails...</Text>
@@ -22,6 +23,7 @@ export default function DetailsCity ({ route, navigation }) {
                     <Text value='erreur' style={styles.white}>erreur</Text>
                 </View>
             }
+             */}
             <Weather
                 cityname={cityname}
                 id={id}
