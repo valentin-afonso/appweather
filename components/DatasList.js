@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native
 import * as api from '../api/citiesApi'
 
 export default function DatasList ({ navigation, valueInput }) {
-  const { data, isLoading, isSuccess, isError } = useQuery(['weather'], api.getCities)
+  const { data, isLoading, isSuccess, isError, refetch } = useQuery(['weather'], api.getCities)
 
   const [refreshing, setRefreshing] = useState(false)
 
@@ -15,6 +15,7 @@ export default function DatasList ({ navigation, valueInput }) {
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
+    refetch()
     wait(2000).then(() => setRefreshing(false))
   }, [])
 

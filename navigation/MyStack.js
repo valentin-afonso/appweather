@@ -8,7 +8,6 @@ import { BottomTabBar } from '@react-navigation/bottom-tabs';
 
 const Stack = createNativeStackNavigator();
 
-
 export default function MyStack() {
     return (
         <Stack.Navigator initialRouteName="Home">

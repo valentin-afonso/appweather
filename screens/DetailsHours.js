@@ -1,27 +1,25 @@
-import React, { useState, useCallback } from 'react';
-import theme from '../styles/theme.style';
-import { StyleSheet, Text, View, ScrollView, Image, RefreshControl } from 'react-native';
-import { useQuery } from '@tanstack/react-query';
-import * as api from '../api/weatherApi';
+import React, { useState, useCallback } from 'react'
+import theme from '../styles/theme.style'
+import { StyleSheet, Text, View, ScrollView, Image, RefreshControl } from 'react-native'
+import { useQuery } from '@tanstack/react-query'
+import * as api from '../api/weatherApi'
 
-export default function DetailsHours({ route }) {
+export default function DetailsHours ({ route }) {
+  const { id, cityname, date } = route.params
+  const { data: hourly, isLoading, isSuccess, isError, error } = useQuery(['weatherDetails', id], () => api.getWeatherDetails(cityname, date))
 
-    const { id, cityname, date } = route.params;
-    const { data: hourly, isLoading, isSuccess, isError, error } = useQuery(['weatherDetails', id], () => api.getWeatherDetails(cityname, date));
+  const [refreshing, setRefreshing] = useState(false)
 
-    const [refreshing, setRefreshing] = useState(false);
+  const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout))
+  }
 
-    const wait = (timeout) => {
-        return new Promise(resolve => setTimeout(resolve, timeout));
-    }
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    wait(2000).then(() => setRefreshing(false))
+  }, [])
 
-    const onRefresh = useCallback(() => {
-        setRefreshing(true);
-        wait(2000).then(() => setRefreshing(false));
-    }, []);
-
-
-    return (
+  return (
         <View style={styles.detailsHours}>
             {isLoading &&
                 <View style={styles.containerLoading}>
@@ -45,7 +43,7 @@ export default function DetailsHours({ route }) {
                     }
                 >
                     {
-                        hourly["hourly"].map((item, id) => (
+                        hourly.hourly.map((item, id) => (
                             <View
                                 key={id}
                                 style={styles.prevision}>
@@ -60,12 +58,12 @@ export default function DetailsHours({ route }) {
                                     <Image
                                         style={styles.icon}
                                         source={{
-                                            uri: item.icon
+                                          uri: item.icon
                                         }}
                                     />
                                     <Text style={styles.white}> {item.condition}</Text>
                                 </View>
-                                <Text style={styles.white}> {item['temperature'].value} {item['temperature'].unit}</Text>
+                                <Text style={styles.white}> {item.temperature.value} {item.temperature.unit}</Text>
                             </View>
                         ))
                     }
@@ -73,43 +71,42 @@ export default function DetailsHours({ route }) {
             }
 
         </View>
-    );
-
+  )
 }
 
 const styles = StyleSheet.create({
-    detailsHours: {
-        backgroundColor: theme.PRIMARY_COLOR,
-    },
-    prevision: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: 20,
-    },
-    previsionCondition: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    icon: {
-        width: 50,
-        height: 50,
-    },
-    white: {
-        color: '#fff',
-    },
-    containerLoading: {
-        backgroundColor: theme.PRIMARY_COLOR,
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    containerError: {
-        backgroundColor: theme.PRIMARY_COLOR,
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
-});
+  detailsHours: {
+    backgroundColor: theme.PRIMARY_COLOR
+  },
+  prevision: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 20
+  },
+  previsionCondition: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  icon: {
+    width: 50,
+    height: 50
+  },
+  white: {
+    color: '#fff'
+  },
+  containerLoading: {
+    backgroundColor: theme.PRIMARY_COLOR,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  containerError: {
+    backgroundColor: theme.PRIMARY_COLOR,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+})
