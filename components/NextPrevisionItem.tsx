@@ -1,7 +1,14 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import * as api from '../api/weatherApi'
 
-export default function NextPrevisionItem ({ weather, id, cityname, navigation }) {
+export type Props = {
+  weather: any;
+  id: any;
+  cityname: any;
+  navigation: any;
+};
+
+export default function NextPrevisionItem ({ weather, id, cityname, navigation }: Props) {
   return (
         <TouchableOpacity
             style={styles.prevision}

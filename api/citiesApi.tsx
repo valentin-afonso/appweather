@@ -1,6 +1,7 @@
+import { Cities } from "../promiseInterface/citiesType"
 import { City } from "../promiseInterface/cityType"
 
-export const getCities = async () => {
+export const getCities = async (): Promise<Cities> => {
   const response = await fetch('https://geo.api.gouv.fr/communes')
   const cities = await response.json()
   // Fichier json trop long ...

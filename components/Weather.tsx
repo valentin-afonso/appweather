@@ -5,21 +5,27 @@ import * as api from '../api/weatherApi'
 import { useQuery } from '@tanstack/react-query'
 import NextPrevisionList from './NextPrevisionList'
 
-export default function Weather ({ cityname, id, navigation }) {
+
+export type Props = {
+  cityname: any;
+  id: any;
+  navigation: any;
+};
+
+export default function Weather ({ cityname, id, navigation }: Props) {
   const { data: weather, isLoading, isSuccess, isError, refetch } = useQuery(['weather', id], () => api.getWeather(cityname))
 
   return (
         <View style={styles.weather}>
             {isLoading &&
                 <View style={styles.containerLoading}>
-                    <Text value='chargement' style={styles.white}>chargement de la météo...</Text>
+                    <Text style={styles.white}>chargement de la météo...</Text>
                 </View>
             }
             {isError &&
                 <View style={styles.containerError}>
-                    <Text value='erreur' style={styles.white}>Données indisponnible pour cette ville</Text>
+                    <Text style={styles.white}>Données indisponnible pour cette ville</Text>
                     <Button
-                        style={styles.buttonRefresh}
                         title="Try again"
                         color="#fff"
                         onPress={() => refetch()}
@@ -77,8 +83,8 @@ export default function Weather ({ cityname, id, navigation }) {
 const styles = StyleSheet.create({
   weather: {
     color: 'black',
-    alignItems: 'start',
-    justifyContent: 'start',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
     width: '100%',
     marginTop: 0
   },
@@ -113,8 +119,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     height: '100%',
     backgroundColor: theme.PRIMARY_COLOR,
-    alignItems: 'start',
-    justifyContent: 'start'
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start'
   },
   icon: {
     width: 100,

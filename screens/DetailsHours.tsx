@@ -4,13 +4,17 @@ import { StyleSheet, Text, View, ScrollView, Image, RefreshControl } from 'react
 import { useQuery } from '@tanstack/react-query'
 import * as api from '../api/weatherApi'
 
-export default function DetailsHours ({ route }) {
+export type Props = {
+  route: any;
+};
+
+export default function DetailsHours ({ route }: Props) {
   const { id, cityname, date } = route.params
-  const { data: hourly, isLoading, isSuccess, isError, error } = useQuery(['weatherDetails', id], () => api.getWeatherDetails(cityname, date))
+  const { data: hourly, isLoading, isSuccess, isError } = useQuery(['weatherDetails', id], () => api.getWeatherDetails(cityname, date))
 
   const [refreshing, setRefreshing] = useState(false)
 
-  const wait = (timeout) => {
+  const wait = (timeout: any) => {
     return new Promise(resolve => setTimeout(resolve, timeout))
   }
 
@@ -23,17 +27,16 @@ export default function DetailsHours ({ route }) {
         <View style={styles.detailsHours}>
             {isLoading &&
                 <View style={styles.containerLoading}>
-                    <Text value='chargement' style={styles.white}>chargement des villes ...</Text>
+                    <Text style={styles.white}>chargement des villes ...</Text>
                 </View>
             }
             {isError &&
                 <View style={styles.containerError}>
-                    <Text value='erreur' style={styles.white}>erreur</Text>
+                    <Text style={styles.white}>erreur</Text>
                 </View>
             }
             {isSuccess &&
                 <ScrollView
-                    style={styles.scrollview}
                     refreshControl={
                         <RefreshControl
                             refreshing={refreshing}
@@ -43,7 +46,7 @@ export default function DetailsHours ({ route }) {
                     }
                 >
                     {
-                        hourly.hourly.map((item, id) => (
+                        hourly.hourly.map((item: any, id: any) => (
                             <View
                                 key={id}
                                 style={styles.prevision}>

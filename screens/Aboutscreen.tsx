@@ -1,7 +1,11 @@
-import { StyleSheet, Text, View, Button, ScrollView, TextInput } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import theme from '../styles/theme.style'
 
-export default function Aboutscreen ({ navigation }) {
+export type Props = {
+  navigation: any;
+};
+
+export default function Aboutscreen ({ navigation }: Props) {
   return (
         <View style={styles.about}>
             <Text style={styles.white}>About screen</Text>

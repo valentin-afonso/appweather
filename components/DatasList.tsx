@@ -4,12 +4,17 @@ import { useQuery } from '@tanstack/react-query'
 import { StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native'
 import * as api from '../api/citiesApi'
 
-export default function DatasList ({ navigation, valueInput }) {
+export type Props = {
+  navigation: any;
+  valueInput: any;
+};
+
+export default function DatasList ({ navigation, valueInput }: Props) {
   const { data, isLoading, isSuccess, isError, refetch } = useQuery(['weather'], api.getCities)
 
   const [refreshing, setRefreshing] = useState(false)
 
-  const wait = (timeout) => {
+  const wait = (timeout: any) => {
     return new Promise(resolve => setTimeout(resolve, timeout))
   }
 
@@ -24,12 +29,12 @@ export default function DatasList ({ navigation, valueInput }) {
             <Text style={styles.listTitle}>Trouvez une ville</Text>
             {isLoading &&
                 <View style={styles.containerLoading}>
-                    <Text value='chargement' style={styles.white}>chargement des villes ...</Text>
+                    <Text style={styles.white}>chargement des villes ...</Text>
                 </View>
             }
             {isError &&
                 <View style={styles.containerError}>
-                    <Text value='erreur' style={styles.white}>erreur</Text>
+                    <Text style={styles.white}>erreur</Text>
                 </View>
             }
             {isSuccess &&
@@ -44,7 +49,7 @@ export default function DatasList ({ navigation, valueInput }) {
                     }
                 >
                     {valueInput !== '' &&
-                        data.map((city, id) => (city.nom.indexOf(valueInput) !== -1 &&
+                        data.map((city: any, id: any) => (city.nom.indexOf(valueInput) !== -1 &&
                             <Text
                                 style={styles.city}
                                 key={id}
@@ -61,7 +66,7 @@ export default function DatasList ({ navigation, valueInput }) {
                         ))
                     }
                     {valueInput === '' &&
-                        data.map((city, id) => (
+                        data.map((city: any, id: any) => (
                             <Text
                                 style={styles.city}
                                 key={id}
@@ -95,7 +100,7 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   listTitle: {
-    textAlign: 'start',
+    textAlign: 'left',
     margin: 10,
     color: '#fff',
     width: '100%',

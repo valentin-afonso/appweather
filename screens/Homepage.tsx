@@ -6,7 +6,11 @@ import Logo from '../assets/logo.png'
 import Search from '../assets/icon-search.png'
 import DatasList from '../components/DatasList'
 
-export default function Homescreen ({ navigation }) {
+export type Props = {
+  navigation: any;
+};
+
+export default function Homescreen ({ navigation }: Props) {
   const [text, setText] = useState('')
 
   return (
@@ -25,7 +29,6 @@ export default function Homescreen ({ navigation }) {
                     value={text}
                     placeholder="Entrez une ville"
                     placeholderTextColor="#fff"
-                    keyboardType="all"
                 />
                 <TouchableOpacity
                     onPress={() => {

@@ -5,7 +5,12 @@ import { StyleSheet, View, Button } from 'react-native'
 import Weather from '../components/Weather'
 import theme from '../styles/theme.style'
 
-export default function DetailsCity ({ route, navigation }) {
+export type Props = {
+  route: any;
+  navigation: any;
+};
+
+export default function DetailsCity ({ route, navigation }: Props) {
   const { cityname, id } = route.params
   // const { cityname, code, id } = route.params
   // const { data: city, isLoading, isError } = useQuery(['cities', id], () => api.getCity(code))
@@ -38,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: 'black',
     alignItems: 'center',
-    justifyContent: 'start'
+    justifyContent: 'flex-start'
   },
   containerDetails: {
     padding: 10,

@@ -2,9 +2,15 @@ import React, { useState, useCallback } from 'react'
 import { StyleSheet, View, ScrollView, RefreshControl } from 'react-native'
 import NextPrevisionItem from './NextPrevisionItem'
 
-export default function NextPrevisionList ({ previsions, cityname, navigation }) {
+export type Props = {
+  previsions: any;
+  cityname: any;
+  navigation: any;
+};
+
+export default function NextPrevisionList ({ previsions, cityname, navigation }: Props) {
   const [refreshing, setRefreshing] = useState(false)
-  const wait = (timeout) => {
+  const wait = (timeout: any) => {
     return new Promise(resolve => setTimeout(resolve, timeout))
   }
 
@@ -16,7 +22,6 @@ export default function NextPrevisionList ({ previsions, cityname, navigation })
   return (
         <View style={styles.listNextPrevision}>
             <ScrollView
-                style={styles.scrollview}
                 refreshControl={
                     <RefreshControl
                         refreshing={refreshing}
@@ -27,10 +32,8 @@ export default function NextPrevisionList ({ previsions, cityname, navigation })
             >
 
                 {
-                    previsions.map((weather, id) => (
-
+                    previsions.map((weather: any, id: any) => (
                         <NextPrevisionItem
-                            style={styles.previsionComponent}
                             key={id}
                             weather={weather}
                             id={id}
