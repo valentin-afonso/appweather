@@ -1,4 +1,4 @@
-export const getWeather = async (cityname) => {
+export const getWeather = async (cityname: any) => {
   const response = await fetch(`https://weather-api.mathisbarre.com/${cityname}`)
   const weather = await response.json()
 
@@ -8,7 +8,7 @@ export const getWeather = async (cityname) => {
   return weather
 }
 
-export const getWeatherDetails = async (cityname, date) => {
+export const getWeatherDetails = async (cityname: any, date: any) => {
   const response = await fetch(`https://weather-api.mathisbarre.com/${cityname}/${date}`)
   const weatherDetails = await response.json()
 
@@ -18,7 +18,7 @@ export const getWeatherDetails = async (cityname, date) => {
   return weatherDetails
 }
 
-export const getDateDay = (dateParam) => {
+export const getDateDay = (dateParam: any) => {
   const dayNames = [
     'Lun',
     'Mar',
@@ -33,7 +33,7 @@ export const getDateDay = (dateParam) => {
   return dayname
 }
 
-export const getDateHours = (dateParam) => {
+export const getDateHours = (dateParam: any) => {
   const date = new Date(dateParam)
   const hours = date.getHours()
   return hours

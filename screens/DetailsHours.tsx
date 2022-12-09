@@ -10,7 +10,7 @@ export type Props = {
 
 export default function DetailsHours ({ route }: Props) {
   const { id, cityname, date } = route.params
-  const { data: hourly, isLoading, isSuccess, isError } = useQuery(['weatherDetails', id], () => api.getWeatherDetails(cityname, date))
+  const { data: hourly, isLoading, isSuccess, isError, refetch } = useQuery(['weatherDetails', id], () => api.getWeatherDetails(cityname, date))
 
   const [refreshing, setRefreshing] = useState(false)
 
@@ -20,6 +20,7 @@ export default function DetailsHours ({ route }: Props) {
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
+    refetch()
     wait(2000).then(() => setRefreshing(false))
   }, [])
 

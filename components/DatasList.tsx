@@ -14,9 +14,9 @@ export default function DatasList ({ navigation, valueInput }: Props) {
 
   const [refreshing, setRefreshing] = useState(false)
 
-  const wait = (timeout: any) => {
-    return new Promise(resolve => setTimeout(resolve, timeout))
-  }
+  const wait = (timeout: number): Promise<void> => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  };
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
